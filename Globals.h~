@@ -3,6 +3,5 @@
 
 int GRID_WIDTH;
 int GRID_HEIGHT;
-int CHRONONS_PASSED;
 
 #endif

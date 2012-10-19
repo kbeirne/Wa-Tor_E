@@ -105,6 +105,7 @@ void World_Update(struct World * w)
 				{
 					
 					struct Position newPos = { .m_x = i, .m_y = j };
+					printf("New Position Before: %i, %i \n", newPos.m_x, newPos.m_y);
 					Fish_Update(&w->m_grid[i][j], &newPos);
 					breed(w, &w->m_grid[i][j], &newPos);
 				}
@@ -120,6 +121,8 @@ void World_Update(struct World * w)
 
 void breed(struct World * w, struct Fish * f, struct Position * newPos)
 {
+	
+	printf("New Position After: %i, %i \n", newPos->m_x, newPos->m_y);
 	w->m_grid[newPos->m_x][newPos->m_y].m_alive = 1;
 	w->m_grid[newPos->m_x][newPos->m_y].m_timeAlive = w->m_grid[f->m_pos.m_x][f->m_pos.m_y].m_timeAlive;
 	

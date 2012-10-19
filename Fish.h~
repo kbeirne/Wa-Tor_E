@@ -42,7 +42,7 @@ void Fish_Setup(struct Fish * f)
 	f->m_alive = 0;
 	f->m_timeAlive = 0;
 	f->m_timesMoved = 0;
-	f->m_type = FISH;
+	m_type = FISH;
 }
 
 void Fish_Draw(struct Fish * f)
