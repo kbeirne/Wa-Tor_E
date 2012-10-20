@@ -1,7 +1,7 @@
 #macros
 Executable_Name = game
 Build_Name = main.c
-Include_Files = Time.h Fish.h
+Include_Files = Time.h Fish.h World.h Globals.h
 
 #default Target
 exec: \

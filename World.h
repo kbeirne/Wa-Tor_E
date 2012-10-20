@@ -5,13 +5,11 @@
 #include <time.h>
 #include <stdlib.h>
 #include "Globals.h"
-#include "Fish.h"
+#include "Creature.h"
 
 struct World
 {
-	int m_width;
-	int m_height;
-	struct Fish ** m_grid;
+	struct Creature ** m_grid;
 };
 
 // prototypes
@@ -19,28 +17,25 @@ void World_Setup(struct World * w, int numFish);
 void World_Destroy(struct World * w);
 void World_Draw(struct World * w);
 void World_Update(struct World * w);
-void breed(struct World * w, struct Fish * f, struct Position * newPos);
 
 void World_Setup(struct World * w, int numFish)
 {
 	srand(time(NULL));
-	w->m_width = GRID_WIDTH;
-	w->m_height = GRID_HEIGHT;
 
 	//Setup 2d array using malloc
-	w->m_grid = (struct Fish**)malloc(w->m_width * sizeof(struct Fish*));
+	w->m_grid = (struct Creature**)malloc(GRID_WIDTH * sizeof(struct Creature*));
 	
 	//Allocate memory for grid
 	int i;
 	int j;
-	for (i = 0; i < w->m_width; i++)
-		w->m_grid[i] = (struct Fish*)malloc(w->m_height * sizeof(struct Fish));
+	for (i = 0; i < GRID_WIDTH; i++)
+		w->m_grid[i] = (struct Creature*)malloc(GRID_HEIGHT * sizeof(struct Creature));
 	
 	//Place a number of fish = numFish at random points on map
 	for(i = 0; i < numFish; i++)
 	{
-		int x = rand() % w->m_width;
-		int y = rand() % w->m_height;
+		int x = rand() % GRID_WIDTH;
+		int y = rand() % GRID_HEIGHT;
 		if(w->m_grid[x][y].m_alive == 0)
 		{
 			w->m_grid[x][y].m_alive = 1;
@@ -52,9 +47,9 @@ void World_Setup(struct World * w, int numFish)
 		}
 	}
 
-	for(i = 0; i < w->m_width; i++)
+	for(i = 0; i < GRID_WIDTH; i++)
 	{
-		for(j = 0; j < w->m_height; j++)
+		for(j = 0; j < GRID_HEIGHT; j++)
 		{
 			struct Position pos = { .m_x = i, .m_y = j };
 			w->m_grid[i][j].m_pos = pos;
@@ -66,18 +61,19 @@ void World_Destroy(struct World * w)
 {
 	//deallocate grid
 	int i;
-	for (i = 0; i < w->m_width; i++)
+	for (i = 0; i < GRID_WIDTH; i++)
 		free(w->m_grid[i]);
 	free(w->m_grid);
 }
 
 void World_Draw(struct World * w)
 {
+	int i;
 	int j;
-	for(j = 0; j < w->m_height; j++)
+	printf("\n\n");
+	for(j = 0; j < GRID_HEIGHT; j++)
 	{
-		int i;
-		for(i = 0; i < w->m_width; i++)
+		for(i = 0; i < GRID_WIDTH; i++)
 		{
 			if(w->m_grid[i][j].m_alive)
 				printf("f");
@@ -86,27 +82,28 @@ void World_Draw(struct World * w)
 		}
 		printf("\n");
 	}
-		printf("\n");
-		printf("________________________________________________________________");
-		printf("\n");
+	printf("\n");
+	printf("  ");
+	for(i = 2; i < (GRID_WIDTH - 2); i++)//Place a line between each map draw
+		printf("_");
+	printf("  ");
+	printf("\n");
 }
 
 void World_Update(struct World * w)
 {
 	int i;
 	int j;
-	for(i = 0; i < w->m_width; i++)
+	for(i = 0; i < GRID_WIDTH; i++)
 	{
-		for(j = 0; j < w->m_height; j++)
+		for(j = 0; j < GRID_HEIGHT; j++)
 		{
 			if (w->m_grid[i][j].m_alive && w->m_grid[i][j].m_timesMoved <= CHRONONS_PASSED)
 			{
 				if(w->m_grid[i][j].m_type == FISH)
 				{
-					
 					struct Position newPos = { .m_x = i, .m_y = j };
-					Fish_Update(&w->m_grid[i][j], &newPos);
-					breed(w, &w->m_grid[i][j], &newPos);
+					Creature_Update(&w->m_grid[i][j], &w->m_grid, &newPos);
 				}
 				else if(w->m_grid[i][j].m_type = SHARK)
 				{
@@ -116,16 +113,6 @@ void World_Update(struct World * w)
 		}
 	}
 	CHRONONS_PASSED++;
-}
-
-void breed(struct World * w, struct Fish * f, struct Position * newPos)
-{
-	w->m_grid[newPos->m_x][newPos->m_y].m_alive = 1;
-	w->m_grid[newPos->m_x][newPos->m_y].m_timeAlive = w->m_grid[f->m_pos.m_x][f->m_pos.m_y].m_timeAlive;
-	
-	w->m_grid[newPos->m_x][newPos->m_y].m_type = w->m_grid[f->m_pos.m_x][f->m_pos.m_y].m_type;
-	w->m_grid[newPos->m_x][newPos->m_y].m_timesMoved = CHRONONS_PASSED - 1000;
-	
 }
 
 #endif

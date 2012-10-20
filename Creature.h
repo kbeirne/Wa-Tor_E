@@ -1,5 +1,5 @@
-#ifndef FISH_H
-#define FISH_H
+#ifndef Creature_H
+#define Creature_H
 
 #include <stdio.h>
 #include <time.h>
@@ -16,7 +16,7 @@ struct Position
 	int m_y;
 };
 
-struct Fish
+struct Creature
 {
 	int m_alive;
 	int m_timeAlive;
@@ -26,27 +26,24 @@ struct Fish
 };
 
 // prototypes
-void Creature_Setup(struct Fish * f);
-void Creature_Update(struct Fish * f, struct Fish *** grid, struct Position * posToUpdate);
-void Creature_Copy(struct Fish * f, struct Fish *** grid, struct Position * newPos);
-void Fish_Make_Move(struct Fish * f, struct Fish *** grid, struct Position * newPos);
+void Creature_Setup(struct Creature * c);
+void Creature_Update(struct Creature * c, struct Creature *** grid, struct Position * posToUpdate);
+void Creature_Copy(struct Creature * c, struct Creature *** grid, struct Position * newPos);
+void Fish_Make_Move(struct Creature * c, struct Creature *** grid, struct Position * newPos);
 
-void Creature_Setup(struct Fish * f)
+void Creature_Setup(struct Creature * c)
 {
 	srand(time(NULL));
-	/*f->m_posX = 0;
-	f->m_posY = 0;*/
-	f->m_alive = 0;
-	f->m_timeAlive = 0;
-	f->m_timesMoved = 0;
-	f->m_type = FISH;
+	c->m_alive = 0;
+	c->m_timeAlive = 0;
+	c->m_timesMoved = 0;
+	c->m_type = FISH;
 }
 
-//Don't need to pass in f if you have grid and posToUpdate but more efficient then constantly dereferencing posToUpdate on grid
-void Creature_Update(struct Fish * f, struct Fish *** grid, struct Position * posToUpdate)
+//Don't need to pass in c if you have grid and posToUpdate but more efficient then constantly dereferencing posToUpdate on grid
+void Creature_Update(struct Creature * c, struct Creature *** grid, struct Position * posToUpdate)
 {
-	
-	f->m_timeAlive++;
+	c->m_timeAlive++;
 	Direction startLocation = rand() % 4;//0-3
 
 	if(startLocation == EAST) goto east;
@@ -59,6 +56,9 @@ void Creature_Update(struct Fish * f, struct Fish *** grid, struct Position * po
 		if(posToUpdate->m_x < 0)
 			posToUpdate->m_x = (GRID_WIDTH - 1);
 
+		//NOTE FOR DECLAN: I ONLY CHECK IF THE SPACE HAS SOMETHING ON IT BEFORE IGNORING IT
+		//YOU WILL HAVE TO ALSO CHECK IF THE TYPE AT THIS LOCATION IS A FISH, IS ALIVE AND IF YOU'RE A SHARK
+		//TO CHECK FOR A SHARK MOVE CORRECTLY - HOPE THIS MAKES SENSE TO YOU
 		if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_alive)//If this space is free (nothing alive)
 		//then exit loop and move using this number
 		{
@@ -129,48 +129,51 @@ void Creature_Update(struct Fish * f, struct Fish *** grid, struct Position * po
 	
 
 	end:
-		Fish_Make_Move(f, grid, posToUpdate);
-
+		if(c->m_type== FISH)
+			Fish_Make_Move(c, grid, posToUpdate);
+		//else
+			//Shark Move
 }
 
+//NOTE: Make_Move encompasses all fish actions (moving and breeding) not just moving, Shark_Make_Move should be the same
 //NOTE: Uncomment printf commands to see fish decision making process in-game
-void Fish_Make_Move(struct Fish * f, struct Fish *** grid, struct Position * newPos)
+void Fish_Make_Move(struct Creature * c, struct Creature *** grid, struct Position * newPos)
 {
-	//printf("\nFish at %i, %i\n", f->m_pos.m_x, f->m_pos.m_y);
-	//printf("Time Alive: %i\n", f->m_timeAlive);
-	//if(f->m_timeAlive % BreedCount == 0)//If ready to breed
-		//printf("Time Alive(%i) mod BreedCount(%i) = 0 Therefore Wants to Breed - ", f->m_timeAlive, BreedCount);
+	//printf("\nFish at %i, %i\n", c->m_pos.m_x, c->m_pos.m_y);
+	//printf("Time Alive: %i\n", c->m_timeAlive);
+	//if(c->m_timeAlive % BreedCount == 0)//If ready to breed
+	//	printf("Time Alive(%i) mod BreedCount(%i) = 0 Therefore Wants to Breed - ", c->m_timeAlive, BreedCount);
 
 	if(newPos != NULL)
 	{	
-		Creature_Copy(f, grid, newPos);//Copy to new location
-		if((f->m_timeAlive % BreedCount) == 0)//If bred then set times moved to 0, don't want to copy old life span
+		Creature_Copy(c, grid, newPos);//Copy to new location
+		if((c->m_timeAlive % BreedCount) == 0)//If bred then set times moved to 0, don't want to copy old life span
 		{
 			(*grid)[newPos->m_x][newPos->m_y].m_timesMoved = 0;
 			//printf("Breeding");
 		}
 		else //otherwise kill old fish (i.e move him)
 		{
-			(*grid)[f->m_pos.m_x][f->m_pos.m_y].m_alive = 0;
-			f->m_pos = (*newPos);
+			(*grid)[c->m_pos.m_x][c->m_pos.m_y].m_alive = 0;
+			c->m_pos = (*newPos);
 			//printf("Moving - Doesn't want to breed");
 		}
 	}
-	else if(f->m_timeAlive % BreedCount == 0)//If ready to breed
+	else if(c->m_timeAlive % BreedCount == 0)//If ready to breed
 	{
-		f->m_timesMoved--;//Set this back so that it will breed next turn if there's a free space
+		c->m_timesMoved--;//Set this back so that it will breed next turn if there's a free space
 		//printf("Not Moving - Can't breed");
 	}
 	//else printf("Not Moving - Doesn't want to breed");
 	//printf("\n");
 }
 
-void Creature_Copy(struct Fish * f, struct Fish *** grid, struct Position * newPos)
+void Creature_Copy(struct Creature * c, struct Creature *** grid, struct Position * newPos)
 {
 	(*grid)[newPos->m_x][newPos->m_y].m_alive = 1;
-	(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = (*grid)[f->m_pos.m_x][f->m_pos.m_y].m_timeAlive;
+	(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = (*grid)[c->m_pos.m_x][c->m_pos.m_y].m_timeAlive;
 
-	(*grid)[newPos->m_x][newPos->m_y].m_type = (*grid)[f->m_pos.m_x][f->m_pos.m_y].m_type;
+	(*grid)[newPos->m_x][newPos->m_y].m_type = (*grid)[c->m_pos.m_x][c->m_pos.m_y].m_type;
 
 	(*grid)[newPos->m_x][newPos->m_y].m_pos = *newPos;
 	

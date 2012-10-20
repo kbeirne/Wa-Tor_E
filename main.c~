@@ -2,23 +2,23 @@
 #include "Globals.h"
 #include "Time.h"
 #include "World.h"
-#include "Fish.h"
+#include "Creature.h"
 
 //prototypes
 void GameLoop();
 
 struct Time myTime;
-struct Fish myFish;
 struct World world;
 
 int main()
 {
 	GRID_WIDTH = 75;
-	GRID_HEIGHT = 20;
+	GRID_HEIGHT = 35;
 	CHRONONS_PASSED = 0;
+	FISH_BREED = 3;
 	// setup 
-	Time_Setup(&myTime);
-	Fish_Setup(&myFish);
+	//Time_Setup(&myTime);
+	//Fish_Setup(&myFish);
 	World_Setup(&world, 1);
 	GameLoop();
 
@@ -27,14 +27,11 @@ int main()
 
 void GameLoop()
 {	
-	printf("start loop");
 	int i;
-	for(i = 0; i < 5; i++)
+	int j;
+	for(i = 0; i < 25; i++)
 	{
-/*
-		Time_Update(&myTime);
-		Time_Wait(&myTime, 1);
-		Fish_Draw(&myFish);*/
+		//for(j = 0; j < 200000000; j++){}
 		World_Update(&world);
 		World_Draw(&world);
 	}

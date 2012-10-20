@@ -3,6 +3,7 @@
 
 int GRID_WIDTH;
 int GRID_HEIGHT;
-int CHRONONS_PASSED;
+long CHRONONS_PASSED;
+int FISH_BREED;
 
 #endif
