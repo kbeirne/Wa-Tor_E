@@ -13,12 +13,12 @@ struct World
 };
 
 // prototypes
-void World_Setup(struct World * w, int numFish);
+void World_Setup(struct World * w, int numFish, int numShark);
 void World_Destroy(struct World * w);
 void World_Draw(struct World * w);
 void World_Update(struct World * w);
 
-void World_Setup(struct World * w, int numFish)
+void World_Setup(struct World * w, int numFish, int numShark)
 {
 	srand(time(NULL));
 
@@ -30,6 +30,18 @@ void World_Setup(struct World * w, int numFish)
 	int j;
 	for (i = 0; i < GRID_WIDTH; i++)
 		w->m_grid[i] = (struct Creature*)malloc(GRID_HEIGHT * sizeof(struct Creature));
+
+	//initialize grid
+	int a;
+	int b;
+	for(a = 0; a < GRID_WIDTH; a++)
+	{
+		for(b = 0; b < GRID_HEIGHT; b++)
+		{
+			Creature_Setup(&(w->m_grid[a][b]));
+		}
+	}
+	
 	
 	//Place a number of fish = numFish at random points on map
 	for(i = 0; i < numFish; i++)
@@ -40,6 +52,22 @@ void World_Setup(struct World * w, int numFish)
 		{
 			w->m_grid[x][y].m_alive = 1;
 			w->m_grid[x][y].m_type = FISH;
+		}
+		else
+		{
+			i--;//redo this fish in a new random location
+		}
+	}
+
+	//Place a number of shark = numShark at random points on map
+	for(i = 0; i < numShark; i++)
+	{
+		int x = rand() % GRID_WIDTH;
+		int y = rand() % GRID_HEIGHT;
+		if(w->m_grid[x][y].m_alive == 0)
+		{
+			w->m_grid[x][y].m_alive = 1;
+			w->m_grid[x][y].m_type = SHARK;
 		}
 		else
 		{
@@ -76,7 +104,16 @@ void World_Draw(struct World * w)
 		for(i = 0; i < GRID_WIDTH; i++)
 		{
 			if(w->m_grid[i][j].m_alive)
-				printf("f");
+			{
+				if(w->m_grid[i][j].m_type == FISH)
+				{
+					printf("f");	
+				}
+				else if(w->m_grid[i][j].m_type == SHARK)
+				{
+					printf("s");
+				}
+			}
 			else
 				printf("~");
 		}
@@ -100,14 +137,9 @@ void World_Update(struct World * w)
 		{
 			if (w->m_grid[i][j].m_alive && w->m_grid[i][j].m_timesMoved <= CHRONONS_PASSED)
 			{
-				if(w->m_grid[i][j].m_type == FISH)
-				{
-					struct Position newPos = { .m_x = i, .m_y = j };
-					Creature_Update(&w->m_grid[i][j], &w->m_grid, &newPos);
-				}
-				else if(w->m_grid[i][j].m_type = SHARK)
-				{
-				}
+				struct Position newPos = { .m_x = i, .m_y = j };
+				Creature_Update(&w->m_grid[i][j], &w->m_grid, &newPos);
+
 				w->m_grid[i][j].m_timesMoved++;
 			}
 		}

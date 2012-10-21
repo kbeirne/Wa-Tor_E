@@ -19,7 +19,7 @@ int main()
 	// setup 
 	//Time_Setup(&myTime);
 	//Fish_Setup(&myFish);
-	World_Setup(&world, 1);
+	World_Setup(&world, 5, 5);
 	GameLoop();
 
 	return (0);
@@ -29,9 +29,9 @@ void GameLoop()
 {	
 	int i;
 	int j;
-	for(i = 0; i < 25; i++)
+	for(i = 0; i < 2500; i++)
 	{
-		for(j = 0; j < 200000000; j++){}
+		for(j = 0; j < 20000000; j++){}
 		World_Update(&world);
 		World_Draw(&world);
 	}
