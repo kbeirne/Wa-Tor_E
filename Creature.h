@@ -1,3 +1,7 @@
+/** @file Creature.h
+ *  @brief Brief explanation of the Creature.h
+ */
+
 #ifndef Creature_H
 #define Creature_H
 
@@ -7,27 +11,44 @@
 
 int BreedCount = 3;//NOTE: more than 1 doesn't work ???
 
-typedef enum { NORTH, EAST, SOUTH, WEST } Direction;
-typedef enum { FISH, SHARK } Species;
-int timeToStarve = 4;// problem, seems to act as though the velue is half what its given
+ /** An enum type.
+* Direction the creature can move in.
+*/
+typedef enum { NORTH,/*!< Direction the creature can move in. */
+				EAST,/*!< Directions the creature can move in. */
+				 SOUTH,/*!< Directions the creature can move in. */
+				  WEST/*!< Directions the creature can move in. */ } Direction;
+typedef enum { FISH, SHARK } Species;/*!< Types the creature can be. */
+int timeToStarve = 4;/*!< Number of moves the shark can make until it starves and dies */
+// problem, seems to act as though the velue is half what its given
 
+/**
+ * @brief The position of the creature, (row,column) in the grid.
+ */
 struct Position
 {
 	int m_x;
 	int m_y;
 };
 
+/**
+ * @brief creature struct
+ */
 struct Creature
 {
-	int m_alive;
-	int m_timeAlive;
-	int m_timesMoved;
-	int m_health; // the numder of chronons before the shark starves
-	Species m_type;
-	struct Position m_pos;
+	int m_alive;/*!< 0 when dead, 1 for alive */
+	int m_timeAlive;/*!< how many chronons it has been alive */
+	int m_timesMoved;/*!< how many chronons it has been alive  */
+	int m_health; /*!< The numder of chronons(cycles) before the shark starves */
+	// the numder of chronons before the shark starves
+	Species m_type;/*!< The creatures type, Fish or Shark */
+	struct Position m_pos;/*!< The creatures current position */
 };
 
 // prototypes
+/**
+ * @brief prototypes(forward declaration)
+ */
 void Creature_Setup(struct Creature * c);
 void Creature_Update(struct Creature * c, struct Creature *** grid, struct Position * posToUpdate);
 void Creature_Copy(struct Creature * c, struct Creature *** grid, struct Position * newPos);
@@ -35,9 +56,13 @@ void Creature_Make_Move(struct Creature * c, struct Creature *** grid, struct Po
 void Shark_Make_Move(struct Creature * c, struct Creature *** grid, struct Position * newPos);
 void Shark_Eat_Fish(struct Creature * shark, struct Creature * fish, struct Creature *** grid);
 
+/**
+ * @brief Initilize the creature object.
+ * @param pointer to the creature object.
+ */
 void Creature_Setup(struct Creature * c)
 {
-	srand(time(NULL));
+	srand(time(NULL));/*!< how many chronons it has been alive */
 	c->m_alive = 0;
 	c->m_timeAlive = 0;
 	c->m_timesMoved = 0;
@@ -45,9 +70,18 @@ void Creature_Setup(struct Creature * c)
 	c->m_type = FISH;
 }
 
+/**
+ * @brief Updates the creature
+ * @param pointer to the creature object.
+ * @param pointer to 2d array (the grid), the container for holding holding the creatures.
+ * @param pointer to the creatures current position.
+ */
+ 
 //Don't need to pass in c if you have grid and posToUpdate but more efficient then constantly dereferencing posToUpdate on grid
 void Creature_Update(struct Creature * c, struct Creature *** grid, struct Position * posToUpdate)
 {
+
+/** @code */
 
 if( c->m_alive != 0 )
 {
@@ -201,11 +235,21 @@ if( c->m_alive != 0 )
 	}
 
 }
+/**
+* @endcode
+*/
 
 }
 
 //NOTE: Make_Move encompasses all fish actions (moving and breeding) not just moving, Shark_Make_Move should be the same
 //NOTE: Uncomment printf commands to see fish decision making process in-game
+
+/**
+ * @brief Make_Move encompasses all fish actions (moving and breeding) not just moving, Shark_Make_Move should be the same
+ * @param pointer to the creature object.
+ * @param pointer to the grid, the container for holding holding the creatures.
+ * @param pointer to the creatures new position.
+ */
 void Creature_Make_Move(struct Creature * c, struct Creature *** grid, struct Position * newPos)
 {
 	//printf("\nFish at %i, %i\n", c->m_pos.m_x, c->m_pos.m_y);
@@ -213,6 +257,8 @@ void Creature_Make_Move(struct Creature * c, struct Creature *** grid, struct Po
 	//if(c->m_timeAlive % BreedCount == 0)//If ready to breed
 	//	printf("Time Alive(%i) mod BreedCount(%i) = 0 Therefore Wants to Breed - ", c->m_timeAlive, BreedCount);
 
+	/** @code */
+	
 	if(newPos != NULL)
 	{	
 		Creature_Copy(c, grid, newPos);//Copy to new location
@@ -236,11 +282,20 @@ void Creature_Make_Move(struct Creature * c, struct Creature *** grid, struct Po
 	}
 	//else printf("Not Moving - Doesn't want to breed");
 	//printf("\n");
+	
+	/** @endcode */
 }
 
-
+/**
+ * @brief Creature_Copy 
+ * @param pointer to the creature object.
+ * @param pointer to the grid, the container for holding holding the creatures.
+ * @param pointer to the creatures new position.
+ */
 void Creature_Copy(struct Creature * c, struct Creature *** grid, struct Position * newPos)
 {
+	/** @code */
+	
 	(*grid)[newPos->m_x][newPos->m_y].m_alive = 1;
 	(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = (*grid)[c->m_pos.m_x][c->m_pos.m_y].m_timeAlive;
 
@@ -253,10 +308,23 @@ void Creature_Copy(struct Creature * c, struct Creature *** grid, struct Positio
 	//Set him to one behind CHRONON count 
 	//i.e ready to move again
 	(*grid)[newPos->m_x][newPos->m_y].m_timesMoved = CHRONONS_PASSED;
+	
+	/**
+	* @endcode 
+	*/
 }
 
+/**
+ * @brief Shark_Eat_Fish(this function is only called when one of the creatures is a shark).
+ * @param Creature A
+ * @param Creature B
+ * @param The grid.
+ */
 void Shark_Eat_Fish(struct Creature * cA, struct Creature * cB, struct Creature *** grid)
 {
+	
+	/** @code */
+	
 	struct Creature * shark;
 	struct Creature * fish;
 
@@ -285,7 +353,7 @@ void Shark_Eat_Fish(struct Creature * cA, struct Creature * cB, struct Creature 
 
 	fish->m_alive = 0; 	// kill fish
 
-	
+	/** @endcode */
 }
 
 #endif

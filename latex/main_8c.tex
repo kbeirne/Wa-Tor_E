@@ -1,0 +1,104 @@
+\hypertarget{main_8c}{\section{main.\-c \-File \-Reference}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+}
+
+
+\-Brief explanation of the \hyperlink{main_8c}{main.\-c}.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include \char`\"{}\-Globals.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}\-Time.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}\-World.\-h\char`\"{}}\*
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_a1ccba604c34743e18775c4c72ff36948}{\-Game\-Loop} ()
+\begin{DoxyCompactList}\small\item\em the game loop \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\begin{DoxyCompactList}\small\item\em this main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structTime}{\-Time} \hyperlink{main_8c_a3f9693876f26285a202872e238602533}{my\-Time}
+\item 
+struct \hyperlink{structWorld}{\-World} \hyperlink{main_8c_adc3966bec7a89fc7a3e7c7c015b470c8}{world}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Brief explanation of the \hyperlink{main_8c}{main.\-c}. 
+
+\subsection{\-Function \-Documentation}
+\hypertarget{main_8c_a1ccba604c34743e18775c4c72ff36948}{\index{main.\-c@{main.\-c}!\-Game\-Loop@{\-Game\-Loop}}
+\index{\-Game\-Loop@{\-Game\-Loop}!main.c@{main.\-c}}
+\subsubsection[{\-Game\-Loop}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Game\-Loop} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a1ccba604c34743e18775c4c72ff36948}
+
+
+the game loop 
+
+\-Detailed description after the member function
+
+\begin{DoxyReturn}{\-Returns}
+nothing 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+ */
+        int i;
+        int j;
+        for(i = 0; i < 2500; i++)
+        {
+                for(j = 0; j < 20000000; j++){}
+                World_Update(&world);
+                World_Draw(&world);
+        }
+        
+\end{DoxyCode}
+ \hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+this main function 
+
+\begin{DoxyReturn}{\-Returns}
+0 for program kill 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+ */
+        
+        
+        GRID_WIDTH = 75;
+        GRID_HEIGHT = 35;
+        CHRONONS_PASSED = 0;
+        FISH_BREED = 3;
+        // setup 
+        //Time_Setup(&myTime);
+        //Fish_Setup(&myFish);
+        World_Setup(&world, 5, 5);
+        GameLoop();
+
+        
+        return (0);
+        
+\end{DoxyCode}
+ 
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{main_8c_a3f9693876f26285a202872e238602533}{\index{main.\-c@{main.\-c}!my\-Time@{my\-Time}}
+\index{my\-Time@{my\-Time}!main.c@{main.\-c}}
+\subsubsection[{my\-Time}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-Time} {\bf my\-Time}}}\label{main_8c_a3f9693876f26285a202872e238602533}
+\-Detailed description after the member \hypertarget{main_8c_adc3966bec7a89fc7a3e7c7c015b470c8}{\index{main.\-c@{main.\-c}!world@{world}}
+\index{world@{world}!main.c@{main.\-c}}
+\subsubsection[{world}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-World} {\bf world}}}\label{main_8c_adc3966bec7a89fc7a3e7c7c015b470c8}
+\-Detailed description after the member 

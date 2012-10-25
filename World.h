@@ -1,3 +1,7 @@
+/** @file World.h
+ *  @brief Brief explanation of the World.h
+ */
+
 #ifndef WORLD_H
 #define WORLD_H
 

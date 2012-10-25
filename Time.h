@@ -1,3 +1,7 @@
+/** @file Time.h
+ *  @brief Brief explanation of the Time.h (not Used)
+ */
+
 #ifndef TIME_H
 #define TIME_H
 
