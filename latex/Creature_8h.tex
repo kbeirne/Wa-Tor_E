@@ -1,0 +1,461 @@
+\hypertarget{Creature_8h}{\section{\-Creature.\-h \-File \-Reference}
+\label{Creature_8h}\index{\-Creature.\-h@{\-Creature.\-h}}
+}
+
+
+\-Brief explanation of the \hyperlink{Creature_8h}{\-Creature.\-h}.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$time.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+\subsection*{\-Data \-Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structPosition}{\-Position}
+\begin{DoxyCompactList}\small\item\em \-The position of the creature, (row,column) in the grid. \end{DoxyCompactList}\item 
+struct \hyperlink{structCreature}{\-Creature}
+\begin{DoxyCompactList}\small\item\em creature struct \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aa}{\-Direction} \{ \*
+\hyperlink{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaad0611de6f28d4a9c9eac959f5344698e}{\-N\-O\-R\-T\-H}, 
+\hyperlink{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaab5b3793b961949c817c7c0d99c05dad7}{\-E\-A\-S\-T}, 
+\hyperlink{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaa8ef5c0bce69283a9986011a63eea8a6b}{\-S\-O\-U\-T\-H}, 
+\hyperlink{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaae9449e8683a8199dad36b07a63b2f523}{\-W\-E\-S\-T}, 
+\*
+{\bfseries \-W\-E\-S\-T}, 
+{\bfseries \-E\-A\-S\-T}, 
+{\bfseries \-S\-O\-U\-T\-H}, 
+{\bfseries \-N\-O\-R\-T\-H}
+ \}
+\item 
+enum {\bfseries \-Species} \{ {\bfseries \-F\-I\-S\-H}, 
+{\bfseries \-S\-H\-A\-R\-K}, 
+{\bfseries \-S\-H\-A\-R\-K}, 
+{\bfseries \-F\-I\-S\-H}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Creature_8h_a5f49f2b2bf06ad5a3095a29b5dce2a90}{\-Creature\-\_\-\-Setup} (struct \hyperlink{structCreature}{\-Creature} $\ast$c)
+\begin{DoxyCompactList}\small\item\em prototypes(forward declaration) \end{DoxyCompactList}\item 
+void \hyperlink{Creature_8h_a4fc3b2c457eeabbf117001304b8cfb28}{\-Creature\-\_\-\-Update} (struct \hyperlink{structCreature}{\-Creature} $\ast$c, struct \hyperlink{structCreature}{\-Creature} $\ast$$\ast$$\ast$grid, struct \hyperlink{structPosition}{\-Position} $\ast$pos\-To\-Update)
+\begin{DoxyCompactList}\small\item\em \-Updates the creature. \end{DoxyCompactList}\item 
+void \hyperlink{Creature_8h_a91d3d9658edba4394b7af1040b831c9e}{\-Creature\-\_\-\-Copy} (struct \hyperlink{structCreature}{\-Creature} $\ast$c, struct \hyperlink{structCreature}{\-Creature} $\ast$$\ast$$\ast$grid, struct \hyperlink{structPosition}{\-Position} $\ast$new\-Pos)
+\begin{DoxyCompactList}\small\item\em \-Creature\-\_\-\-Copy. \end{DoxyCompactList}\item 
+void \hyperlink{Creature_8h_a08f9bf90e6ae51cc256e34e8d45c0ce8}{\-Creature\-\_\-\-Make\-\_\-\-Move} (struct \hyperlink{structCreature}{\-Creature} $\ast$c, struct \hyperlink{structCreature}{\-Creature} $\ast$$\ast$$\ast$grid, struct \hyperlink{structPosition}{\-Position} $\ast$new\-Pos)
+\begin{DoxyCompactList}\small\item\em \-Make\-\_\-\-Move encompasses all fish actions (moving and breeding) not just moving, \-Shark\-\_\-\-Make\-\_\-\-Move should be the same. \end{DoxyCompactList}\item 
+\hypertarget{Creature_8h_a503f830d501797907ff7eed4bbcf0b04}{void {\bfseries \-Shark\-\_\-\-Make\-\_\-\-Move} (struct \hyperlink{structCreature}{\-Creature} $\ast$c, struct \hyperlink{structCreature}{\-Creature} $\ast$$\ast$$\ast$grid, struct \hyperlink{structPosition}{\-Position} $\ast$new\-Pos)}\label{Creature_8h_a503f830d501797907ff7eed4bbcf0b04}
+
+\item 
+void \hyperlink{Creature_8h_ad97fa92a0e579230d18d35973bca6dce}{\-Shark\-\_\-\-Eat\-\_\-\-Fish} (struct \hyperlink{structCreature}{\-Creature} $\ast$c\-A, struct \hyperlink{structCreature}{\-Creature} $\ast$c\-B, struct \hyperlink{structCreature}{\-Creature} $\ast$$\ast$$\ast$grid)
+\begin{DoxyCompactList}\small\item\em \-Shark\-\_\-\-Eat\-\_\-\-Fish. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Creature_8h_a598a03907191bb51bb06e06c116b3309}{int {\bfseries \-Breed\-Count} = 3}\label{Creature_8h_a598a03907191bb51bb06e06c116b3309}
+
+\item 
+int \hyperlink{Creature_8h_aeecc9a4a65c02c8e93427f625ff217b0}{time\-To\-Starve} = 4
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Brief explanation of the \hyperlink{Creature_8h}{\-Creature.\-h}. 
+
+\subsection{\-Enumeration \-Type \-Documentation}
+\hypertarget{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aa}{\index{\-Creature.\-h@{\-Creature.\-h}!\-Direction@{\-Direction}}
+\index{\-Direction@{\-Direction}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{\-Direction}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \-Direction}}}\label{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aa}
+\-An enum type. \-The documentation block cannot be put after the enum! \begin{Desc}
+\item[\-Enumerator\-: ]\par
+\begin{description}
+\index{\-N\-O\-R\-T\-H@{\-N\-O\-R\-T\-H}!\-Creature.\-h@{\-Creature.\-h}}\index{\-Creature.\-h@{\-Creature.\-h}!\-N\-O\-R\-T\-H@{\-N\-O\-R\-T\-H}}\item[{\em 
+\hypertarget{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaad0611de6f28d4a9c9eac959f5344698e}{\-N\-O\-R\-T\-H}\label{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaad0611de6f28d4a9c9eac959f5344698e}
+}]\-Direction the creature can move in. \index{\-E\-A\-S\-T@{\-E\-A\-S\-T}!\-Creature.\-h@{\-Creature.\-h}}\index{\-Creature.\-h@{\-Creature.\-h}!\-E\-A\-S\-T@{\-E\-A\-S\-T}}\item[{\em 
+\hypertarget{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaab5b3793b961949c817c7c0d99c05dad7}{\-E\-A\-S\-T}\label{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaab5b3793b961949c817c7c0d99c05dad7}
+}]\-Directions the creature can move in. \index{\-S\-O\-U\-T\-H@{\-S\-O\-U\-T\-H}!\-Creature.\-h@{\-Creature.\-h}}\index{\-Creature.\-h@{\-Creature.\-h}!\-S\-O\-U\-T\-H@{\-S\-O\-U\-T\-H}}\item[{\em 
+\hypertarget{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaa8ef5c0bce69283a9986011a63eea8a6b}{\-S\-O\-U\-T\-H}\label{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaa8ef5c0bce69283a9986011a63eea8a6b}
+}]\-Directions the creature can move in. \index{\-W\-E\-S\-T@{\-W\-E\-S\-T}!\-Creature.\-h@{\-Creature.\-h}}\index{\-Creature.\-h@{\-Creature.\-h}!\-W\-E\-S\-T@{\-W\-E\-S\-T}}\item[{\em 
+\hypertarget{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaae9449e8683a8199dad36b07a63b2f523}{\-W\-E\-S\-T}\label{Creature_8h_a224b9163917ac32fc95a60d8c1eec3aaae9449e8683a8199dad36b07a63b2f523}
+}]\-Directions the creature can move in. \end{description}
+\end{Desc}
+
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{Creature_8h_a91d3d9658edba4394b7af1040b831c9e}{\index{\-Creature.\-h@{\-Creature.\-h}!\-Creature\-\_\-\-Copy@{\-Creature\-\_\-\-Copy}}
+\index{\-Creature\-\_\-\-Copy@{\-Creature\-\_\-\-Copy}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{\-Creature\-\_\-\-Copy}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Creature\-\_\-\-Copy} (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-Creature} $\ast$}]{c, }
+\item[{struct {\bf \-Creature} $\ast$$\ast$$\ast$}]{grid, }
+\item[{struct {\bf \-Position} $\ast$}]{new\-Pos}
+\end{DoxyParamCaption}
+)}}\label{Creature_8h_a91d3d9658edba4394b7af1040b831c9e}
+
+
+\-Creature\-\_\-\-Copy. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em pointer} & to the creature object. \\
+\hline
+{\em pointer} & to the grid, the container for holding holding the creatures. \\
+\hline
+{\em pointer} & to the creatures new position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+ */
+        
+        (*grid)[newPos->m_x][newPos->m_y].m_alive = 1;
+        (*grid)[newPos->m_x][newPos->m_y].m_timeAlive = (*grid)[c->m_pos.m_x][c
+      ->m_pos.m_y].m_timeAlive;
+
+        (*grid)[newPos->m_x][newPos->m_y].m_type = (*grid)[c->m_pos.m_x][c->
+      m_pos.m_y].m_type;
+
+        (*grid)[newPos->m_x][newPos->m_y].m_health = (*grid)[c->m_pos.m_x][c->
+      m_pos.m_y].m_health;
+
+        (*grid)[newPos->m_x][newPos->m_y].m_pos = *newPos;
+        
+        //Set him to one behind CHRONON count 
+        //i.e ready to move again
+        (*grid)[newPos->m_x][newPos->m_y].m_timesMoved = CHRONONS_PASSED;
+        
+        /**
+\end{DoxyCode}
+\hypertarget{Creature_8h_a08f9bf90e6ae51cc256e34e8d45c0ce8}{\index{\-Creature.\-h@{\-Creature.\-h}!\-Creature\-\_\-\-Make\-\_\-\-Move@{\-Creature\-\_\-\-Make\-\_\-\-Move}}
+\index{\-Creature\-\_\-\-Make\-\_\-\-Move@{\-Creature\-\_\-\-Make\-\_\-\-Move}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{\-Creature\-\_\-\-Make\-\_\-\-Move}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Creature\-\_\-\-Make\-\_\-\-Move} (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-Creature} $\ast$}]{c, }
+\item[{struct {\bf \-Creature} $\ast$$\ast$$\ast$}]{grid, }
+\item[{struct {\bf \-Position} $\ast$}]{new\-Pos}
+\end{DoxyParamCaption}
+)}}\label{Creature_8h_a08f9bf90e6ae51cc256e34e8d45c0ce8}
+
+
+\-Make\-\_\-\-Move encompasses all fish actions (moving and breeding) not just moving, \-Shark\-\_\-\-Make\-\_\-\-Move should be the same. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em pointer} & to the creature object. \\
+\hline
+{\em pointer} & to the grid, the container for holding holding the creatures. \\
+\hline
+{\em pointer} & to the creatures new position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+ */
+        
+        if(newPos != NULL)
+        {       
+                Creature_Copy(c, grid, newPos);//Copy to new location
+                if((c->m_timeAlive % BreedCount) == 0)//If bred then set times
+       moved to 0, don't want to copy old life span
+                {
+                        (*grid)[newPos->m_x][newPos->m_y].m_timesMoved = 0;
+                        (*grid)[newPos->m_x][newPos->m_y].m_health = 
+      timeToStarve;
+                        //printf("Breeding");
+                }
+                else //otherwise kill old fish (i.e move him)
+                {
+                        (*grid)[c->m_pos.m_x][c->m_pos.m_y].m_alive = 0;
+                        c->m_pos = (*newPos);
+                        //printf("Moving - Doesn't want to breed");
+                }
+        }
+        else if(c->m_timeAlive % BreedCount == 0)//If ready to breed
+        {
+                c->m_timesMoved--;//Set this back so that it will breed next
+       turn if there's a free space
+                //printf("Not Moving - Can't breed");
+        }
+        //else printf("Not Moving - Doesn't want to breed");
+        //printf("\n");
+        
+\end{DoxyCode}
+ \hypertarget{Creature_8h_a5f49f2b2bf06ad5a3095a29b5dce2a90}{\index{\-Creature.\-h@{\-Creature.\-h}!\-Creature\-\_\-\-Setup@{\-Creature\-\_\-\-Setup}}
+\index{\-Creature\-\_\-\-Setup@{\-Creature\-\_\-\-Setup}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{\-Creature\-\_\-\-Setup}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Creature\-\_\-\-Setup} (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-Creature} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{Creature_8h_a5f49f2b2bf06ad5a3095a29b5dce2a90}
+
+
+prototypes(forward declaration) 
+
+\-Initilize the creature object.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em pointer} & to the creature object. \\
+\hline
+\end{DoxyParams}
+$<$ how many chronons it has been alive \hypertarget{Creature_8h_a4fc3b2c457eeabbf117001304b8cfb28}{\index{\-Creature.\-h@{\-Creature.\-h}!\-Creature\-\_\-\-Update@{\-Creature\-\_\-\-Update}}
+\index{\-Creature\-\_\-\-Update@{\-Creature\-\_\-\-Update}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{\-Creature\-\_\-\-Update}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Creature\-\_\-\-Update} (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-Creature} $\ast$}]{c, }
+\item[{struct {\bf \-Creature} $\ast$$\ast$$\ast$}]{grid, }
+\item[{struct {\bf \-Position} $\ast$}]{pos\-To\-Update}
+\end{DoxyParamCaption}
+)}}\label{Creature_8h_a4fc3b2c457eeabbf117001304b8cfb28}
+
+
+\-Updates the creature. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em pointer} & to the creature object. \\
+\hline
+{\em pointer} & to the grid, the container for holding holding the creatures. \\
+\hline
+{\em pointer} & to the creatures current position. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+ */
+
+if( c->m_alive != 0 )
+{
+
+        c->m_timeAlive++;
+        Direction startLocation = rand() % 4;//0-3
+
+        // Shark Starve
+        if(c->m_type == SHARK)
+        {       
+                c->m_health--;
+                if(c->m_health <= 0)
+                {
+                        c->m_alive = 0;
+                }
+        }
+
+        if(startLocation == EAST) goto east;
+        else if(startLocation == SOUTH) goto south;
+        else if(startLocation == NORTH) goto north;
+
+        west:
+        {
+                posToUpdate->m_x--;
+                if(posToUpdate->m_x < 0)
+                        posToUpdate->m_x = (GRID_WIDTH - 1);
+
+                //NOTE FOR DECLAN: I ONLY CHECK IF THE SPACE HAS SOMETHING ON
+       IT BEFORE IGNORING IT
+                //YOU WILL HAVE TO ALSO CHECK IF THE TYPE AT THIS LOCATION IS A
+       FISH, IS ALIVE AND IF YOU'RE A SHARK
+                //TO CHECK FOR A SHARK MOVE CORRECTLY - HOPE THIS MAKES SENSE
+       TO YOU
+                if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_alive)//If
+       this space is free (nothing alive)
+                //then exit loop and move using this number
+                {// if alive
+                        if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_type =
+      = c->m_type)
+                        {// if types match
+                                if(startLocation == EAST)//Are we going back to
+       where we started (round in circles)? 
+                                {
+                                        //if so then set next pos to null
+       (don't move) and skip to end
+                                        posToUpdate = NULL;
+                                        goto move;
+                                }
+                        }
+                        else
+                        {// if types don't match
+                                goto sharkEat;
+                        }
+                }
+                else//space is free so use our current posToUpdate and skip to
+       the end
+                {
+                        goto move;
+                }
+                        
+        }
+        east://same as west: comments
+        {
+                posToUpdate->m_x++;
+                if(posToUpdate->m_x >= (GRID_WIDTH))
+                        posToUpdate->m_x = 0;
+                if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_alive)
+                {// if alive
+                        if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_type =
+      = c->m_type)
+                        {// if types match
+                                if(startLocation == NORTH)
+                                {
+                                        posToUpdate = NULL;
+                                        goto move;
+                                }
+                        }
+                        else
+                        {// if types don't match
+                                goto sharkEat;
+                        }
+                }
+                else
+                {
+                        goto move;
+                }
+        }
+        north://same as west: comments
+        {
+                posToUpdate->m_y--;
+                if(posToUpdate->m_y < 0)
+                        posToUpdate->m_y = (GRID_HEIGHT - 1);
+                if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_alive)
+                {       // if alive
+                        if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_type =
+      = c->m_type)
+                        {// if types match
+                                if(startLocation == SOUTH)
+                                {
+                                        posToUpdate = NULL;
+                                        goto move;
+                                }
+                        }
+                        else
+                        {// if types don't match
+                                goto sharkEat;
+                        }
+                        
+                }
+                else
+                {
+                        goto move;                                              
+                }
+        }
+        south://same as west: comments but don't need to goto end as we will
+       naturally reach the end unless we goto west
+        {
+                posToUpdate->m_y++;
+                if(posToUpdate->m_y >= GRID_HEIGHT)
+                        posToUpdate->m_y = 0;
+
+                if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_alive )
+                {       // if alive
+                        if((*grid)[posToUpdate->m_x][posToUpdate->m_y].m_type =
+      = c->m_type)
+                        {// if types match
+                                if(startLocation == WEST)
+                                        posToUpdate = NULL;
+                                else
+                                        goto west;
+                        }
+                        else
+                        {// if types don't match
+                                goto sharkEat;
+                        }
+                }
+                else
+                {
+                        goto move;                                              
+                }
+        }
+        
+
+        move:
+        {
+                if(c->m_alive != 0)
+                {
+                        Creature_Make_Move(c, grid, posToUpdate);
+                }
+                goto end;
+        }
+
+        sharkEat:
+        {               
+                printf("C : %i \n", c->m_type);
+                printf("posToUpDate : %i \n", (*grid)[posToUpdate->m_x][
+      posToUpdate->m_y].m_type);
+
+                Shark_Eat_Fish(c, &((*grid)[posToUpdate->m_x][posToUpdate->m_y]
+      ), grid);
+        }
+
+        end:
+        {
+        }
+
+}
+/**
+\end{DoxyCode}
+\hypertarget{Creature_8h_ad97fa92a0e579230d18d35973bca6dce}{\index{\-Creature.\-h@{\-Creature.\-h}!\-Shark\-\_\-\-Eat\-\_\-\-Fish@{\-Shark\-\_\-\-Eat\-\_\-\-Fish}}
+\index{\-Shark\-\_\-\-Eat\-\_\-\-Fish@{\-Shark\-\_\-\-Eat\-\_\-\-Fish}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{\-Shark\-\_\-\-Eat\-\_\-\-Fish}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Shark\-\_\-\-Eat\-\_\-\-Fish} (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \-Creature} $\ast$}]{c\-A, }
+\item[{struct {\bf \-Creature} $\ast$}]{c\-B, }
+\item[{struct {\bf \-Creature} $\ast$$\ast$$\ast$}]{grid}
+\end{DoxyParamCaption}
+)}}\label{Creature_8h_ad97fa92a0e579230d18d35973bca6dce}
+
+
+\-Shark\-\_\-\-Eat\-\_\-\-Fish. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \hyperlink{structCreature}{\-Creature}} & \-A \\
+\hline
+{\em \hyperlink{structCreature}{\-Creature}} & \-B \\
+\hline
+{\em \-The} & grid. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+ */
+        
+        struct Creature * shark;
+        struct Creature * fish;
+
+        if(cA->m_type == SHARK && cB->m_type == SHARK)// which is shark
+        {
+                exit(0);
+        }
+
+        if(cA->m_type == SHARK)// which is shark
+        {
+                shark = cA;
+                fish = cB;
+        }
+        else
+        {       
+                shark = cB;
+                fish = cA;
+        }
+
+        int oldPosX = shark->m_pos.m_x;
+        int oldPosY = shark->m_pos.m_y;
+        shark->m_health = timeToStarve;
+        Creature_Copy(shark, grid, &fish->m_pos);//Copy to new location
+
+        (*grid)[oldPosX][oldPosX].m_alive = 0;// kill old shark
+
+        fish->m_alive = 0;      // kill fish
+
+\end{DoxyCode}
+ 
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{Creature_8h_aeecc9a4a65c02c8e93427f625ff217b0}{\index{\-Creature.\-h@{\-Creature.\-h}!time\-To\-Starve@{time\-To\-Starve}}
+\index{time\-To\-Starve@{time\-To\-Starve}!Creature.h@{\-Creature.\-h}}
+\subsubsection[{time\-To\-Starve}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf time\-To\-Starve} = 4}}\label{Creature_8h_aeecc9a4a65c02c8e93427f625ff217b0}
+\-Number of moves the shark can make until it starves and dies 
