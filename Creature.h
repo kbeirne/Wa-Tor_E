@@ -88,7 +88,6 @@ if( c->m_alive != 0 )
 {
 //	printf("Position: %i, %i", grid[posToUpdate->m_X][posToUpdate->m_Y].m_pos.m_X, grid[posToUpdate->m_X][posToUpdate->m_Y].m_pos.m_Y);
 	
-
 	c->m_timeAlive++;
 	Direction startLocation = rand() % 4;//0-3
 
@@ -267,25 +266,29 @@ void Creature_Make_Move(struct Creature * c, struct Creature *** grid, struct Po
 	
 	if(newPos != NULL)
 	{	
-		Creature_Copy(c, grid, newPos);//Copy to new location
-		
-		if((c->m_timeAlive % SharkBreedCount) == 0 && c->m_type == SHARK)//If bred then set times moved to 0, don't want to copy old life span
+		#pragma omp sections
 		{
-			(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = 0;
-			(*grid)[newPos->m_x][newPos->m_y].m_health = timeToStarve;
-			//printf("Breeding");
-		}
-		else if((c->m_timeAlive % FishBreedCount) == 0 && c->m_type == FISH)//If bred then set times moved to 0, don't want to copy old life span
-		{
-			(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = 0;
-			(*grid)[newPos->m_x][newPos->m_y].m_health = timeToStarve;
-			//printf("Breeding");
-		}
-		else //otherwise kill old fish (i.e move him)
-		{
-			(*grid)[c->m_pos.m_x][c->m_pos.m_y].m_alive = 0;
-			c->m_pos = (*newPos);
-			//printf("Moving - Doesn't want to breed");
+			 #pragma omp section
+			Creature_Copy(c, grid, newPos);//Copy to new location
+			 #pragma omp section
+			if((c->m_timeAlive % SharkBreedCount) == 0 && c->m_type == SHARK)//If bred then set times moved to 0, don't want to copy old life span
+			{
+				(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = 0;
+				(*grid)[newPos->m_x][newPos->m_y].m_health = timeToStarve;
+				//printf("Breeding");
+			}
+			else if((c->m_timeAlive % FishBreedCount) == 0 && c->m_type == FISH)//If bred then set times moved to 0, don't want to copy old life span
+			{
+				(*grid)[newPos->m_x][newPos->m_y].m_timeAlive = 0;
+				(*grid)[newPos->m_x][newPos->m_y].m_health = timeToStarve;
+				//printf("Breeding");
+			}
+			else //otherwise kill old fish (i.e move him)
+			{
+				(*grid)[c->m_pos.m_x][c->m_pos.m_y].m_alive = 0;
+				c->m_pos = (*newPos);
+				//printf("Moving - Doesn't want to breed");
+			}
 		}
 	}
 	else if((c->m_type == SHARK && c->m_timeAlive % SharkBreedCount == 0)

@@ -51,9 +51,10 @@ void GameLoop()
 	/** @code */
 	int i;
 	int j;
+
 	while(finished == 0)
 	{
-		for(j = 0; j < 8000000; j++){}// with this line the grid draws more consistently, for some reason???????
+//		for(j = 0; j < 8000000; j++){}
 		World_Update(&world);
 		World_Draw(&world);
 	}
