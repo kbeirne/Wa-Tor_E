@@ -19,7 +19,7 @@ void Time_Setup(struct Time * thisObj);
 void Time_Update(struct Time * thisObj);
 void Time_Wait(struct Time * thisObj, double waitTime);
 float Time_GetTimeSinceLastFrame(struct Time * thisObj);
-float Time_GetTimeElapsed(struct Time * thisObj);
+float Time_GetTimeElapsed();//struct Time * thisObj);
 
 void Time_Setup(struct Time * thisObj)
 {
@@ -48,7 +48,7 @@ float Time_GetTimeSinceLastFrame(struct Time * thisObj)
 	return(thisObj->m_timeSinceLastFrame);
 }
 
-float Time_GetTimeElapsed(struct Time * thisObj)
+float Time_GetTimeElapsed()//struct Time * thisObj)
 {
   	float t = clock();
 	float secondsSinceStart = ((float)t)/CLOCKS_PER_SEC;

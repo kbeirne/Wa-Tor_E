@@ -38,7 +38,7 @@ void World_Setup(struct World * w, int numFish, int numShark)
 	//Allocate memory for grid
 	int i;
 	int j;
-	
+	//unsafe and/or stupid! (malloc)
 	#pragma omp parallel for
 	for (i = 0; i < GRID_WIDTH; i++)
 		w->m_grid[i] = (struct Creature*)malloc(GRID_HEIGHT * sizeof(struct Creature));
@@ -142,7 +142,7 @@ void World_Update(struct World * w)
 	}
 
 	
-	//#pragma omp parallel for private fish and shark count for each thread
+	#pragma omp parallel for// private fish and shark count for each thread
 	for(i = 0; i < GRID_WIDTH; i++)
 	{	
 		for(j = 0; j < GRID_HEIGHT; j++)
@@ -209,7 +209,7 @@ void World_Draw(struct World * w)
 	printf("  ");
 	
 	//Doable but probably useless	
-	#pragma omp parallel for
+	//#pragma omp parallel for
 	for(i = 2; i < (GRID_WIDTH - 2); i++)//Place a line between each map draw
 		printf("_");
 	printf("  ");

@@ -1,0 +1,13 @@
+Time: 106.273212, Threads: 1 (at 10000 frames, 500x500 grid)
+Time: 107.828195, Threads: 2 (at 10000 frames, 500x500 grid)
+Time: 105.635448, Threads: 4 (at 10000 frames, 500x500 grid)
+Time: 105.825683, Threads: 8 (at 10000 frames, 500x500 grid)
+Time: 106.915207, Threads: 16 (at 10000 frames, 500x500 grid)
+
+Time: 153.775533, Threads: 1 (at 1000 frames, 500x500 grid)
+Time: 174.314903, Threads: 2 (at 1000 frames, 500x500 grid)
+Time: 183.271235, Threads: 4 (at 1000 frames, 500x500 grid)
+Time: 190.189200, Threads: 8 (at 1000 frames, 500x500 grid)
+Time: 195.836028, Threads: 16 (at 1000 frames, 500x500 grid)
+Time: 221.616594, Threads: 16 (at 1000 frames, 500x500 grid)
+Time: 222.458893, Threads: 16 (at 1000 frames, 500x500 grid)

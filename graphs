@@ -1,0 +1,4 @@
+Size of grid x fps
+Number of threads x fps(small grid, large grid)
+Array data size x fps
+#pragma schedule

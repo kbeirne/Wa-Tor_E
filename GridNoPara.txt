@@ -1,0 +1,5 @@
+Time: 1.411792, GridSize: 100x100 (at 1000 frames)
+Time: 3.848829, GridSize: 250x250 (at 1000 frames)
+Time: 13.110142, GridSize: 500x500 (at 1000 frames)
+Time: 31.587773, GridSize: 750x750 (at 1000 frames)
+Time: 56.204196, GridSize: 1000x1000 (at 1000 frames)

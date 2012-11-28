@@ -6,7 +6,7 @@
 
 int GRID_WIDTH;/*!< Detailed description after the member */
 int GRID_HEIGHT;/*!< Detailed description after the member */
-long CHRONONS_PASSED;/*!< Detailed description after the member */
+int CHRONONS_PASSED;/*!< Detailed description after the member */
 int FISH_BREED;/*!< Detailed description after the member */
 int finished;
 int fishCount;
